@@ -1,0 +1,50 @@
+<div class="login-page" [@routerTransition]>
+    <div class="row justify-content-md-center">
+        <div class="col-md-4">
+            <img src="assets/images/logo.png" width="150px" class="user-avatar" />
+            <h1>Ivoz Provider (Artemis)</h1>
+            <form [formGroup]="form" (ngSubmit)="login(form.value)">
+                <div class="form-content">
+                    {{ credentials | json }}
+                    <div class="form-group">
+                        <input 
+                            name="username"
+                            type="text" 
+                            formControlName="username" 
+                            class="form-control input-underline input-lg"  
+                            placeholder="Username">
+                        <div 
+                            class="alert" 
+                            *ngIf="!form.controls['username'].valid && form.controls['username'].touched"
+                        >
+                            Username is required
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input 
+                            type="password" 
+                            name="password"
+                            formControlName="password" 
+                            class="form-control input-underline input-lg" 
+                            placeholder="Password">
+                        <div 
+                            class="alert" 
+                            *ngIf="!form.controls['password'].valid && form.controls['password'].touched"
+                        >
+                            Password is required
+                        </div>
+
+                    </div>
+                </div>
+                <input 
+                    class=""
+                    type="submit" 
+                    class="btn rounded-btn button expanded" 
+                    value="Log in" 
+                    [disabled]="!form.valid">
+                    <!-- <a class="btn rounded-btn" [routerLink]="['/dashboard']" (click)="onLoggedin()"> Log in </a> -->
+            </form>
+        </div>
+    </div>
+</div>
