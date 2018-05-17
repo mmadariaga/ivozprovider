@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
+import { AuthService } from '@shared/services/auth.service';
+
 @Component({
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html',
@@ -12,7 +14,11 @@ export class SidebarComponent {
     showMenu: string = '';
     pushRightClass: string = 'push-right';
 
-    constructor(private translate: TranslateService, public router: Router) {
+    constructor(
+        private translate: TranslateService, 
+        public router: Router,
+        private authService: AuthService
+    ) {
         this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de']);
         this.translate.setDefaultLang('en');
         const browserLang = this.translate.getBrowserLang();
@@ -56,6 +62,6 @@ export class SidebarComponent {
     }
 
     onLoggedout() {
-        localStorage.removeItem('isLoggedin');
+        this.authService.logout();
     }
 }

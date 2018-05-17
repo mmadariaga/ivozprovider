@@ -7,6 +7,10 @@ export class Credentials {
     this.password = password;
   }
 
+  getUsername(): string {
+    return this.username;
+  }
+
   public toFormData(): FormData {
 
     const payload = new FormData();

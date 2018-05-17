@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { tap, catchError} from 'rxjs/operators'
+import { Observable, of, throwError } from 'rxjs';
 
 import { routerTransition } from '../router.animations';
-import { AuthService } from './service/auth.service';
-import { Credentials } from './model/credentials';
+import { AuthService } from '@shared/services/auth.service';
+import { Credentials } from '@shared/models/credentials';
 
 @Component({
     selector: 'app-login',
@@ -15,6 +17,7 @@ import { Credentials } from './model/credentials';
 export class LoginComponent implements OnInit {
 
     form: FormGroup;
+    loginError: Boolean = false;
 
     constructor(
         private router: Router,
@@ -40,10 +43,9 @@ export class LoginComponent implements OnInit {
         });
     }
 
-    
-
     public login(formValues) {
 
+        this.loginError = false;
         const credentials = new Credentials(
             formValues.username,
             formValues.password
@@ -51,7 +53,9 @@ export class LoginComponent implements OnInit {
 
         this.authService
             .login(credentials)
-            .subscribe(_ => console.log('success', _));
-        //localStorage.setItem('isLoggedin', 'true');
+            .subscribe(
+                (success) => this.router.navigate(['/dashboard']),
+                (error) => this.loginError = true
+            );
     }
 }

@@ -3,6 +3,8 @@
         <div class="col-md-4">
             <img src="assets/images/logo.png" width="150px" class="user-avatar" />
             <h1>Ivoz Provider (Artemis)</h1>
+
+            {{ loginError }}
             <form [formGroup]="form" (ngSubmit)="login(form.value)">
                 <div class="form-content">
                     {{ credentials | json }}
