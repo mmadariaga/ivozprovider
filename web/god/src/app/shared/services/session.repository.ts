@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Session } from '../models/session';
+import { Session } from '../models/Session';
 
 @Injectable()
 export class SessionRepository {
@@ -16,7 +16,7 @@ export class SessionRepository {
         }
     }
 
-    get(): Session | null  {
+    get(): Session | null {
         return this.session;
     }
 
@@ -26,7 +26,7 @@ export class SessionRepository {
         sessionStorage.setItem('token', session.getToken());
     }
 
-    clear(): void  {
+    clear(): void {
         this.session = null;
         sessionStorage.clear();
     }

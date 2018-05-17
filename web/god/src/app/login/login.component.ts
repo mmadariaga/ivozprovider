@@ -6,7 +6,7 @@ import { Observable, of, throwError } from 'rxjs';
 
 import { routerTransition } from '../router.animations';
 import { AuthService } from '@shared/services/auth.service';
-import { Credentials } from '@shared/models/credentials';
+import { Credentials } from '@shared/models/Credentials';
 
 @Component({
     selector: 'app-login',
@@ -33,11 +33,11 @@ export class LoginComponent implements OnInit {
     createForm() {
         this.form = this.formBuilder.group({
             'username': [
-                'admin', 
+                'admin',
                 Validators.required
             ],
             'password': [
-                'changeme', 
+                'changeme',
                 Validators.compose([Validators.required])
             ]
         });

@@ -28,11 +28,13 @@
         "@ngrx/store": "^5.2.0",
         "@ngx-translate/core": "^10.0.1",
         "@ngx-translate/http-loader": "^3.0.1",
+        "@types/pluralize": "0.0.28",
         "chart.js": "^2.7.2",
         "core-js": "^2.5.5",
         "font-awesome": "^4.7.0",
         "ng2-charts": "^1.6.0",
         "node-sass": "^4.9.0",
+        "pluralize": "^7.0.0",
         "rxjs": "^6.1.0",
         "yarn": "^1.6.0",
         "zone.js": "^0.8.26"

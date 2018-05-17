@@ -3,15 +3,13 @@
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
-<<<<<<< HEAD
-const API_URL = 'https://10.10.3.21';
-=======
 const API_URL = 'https://10.10.3.21/api/platform';
->>>>>>> b024c9a7a... fixup web admin
 
 export const environment = {
   production: false,
+  baseUrl: API_URL,
+  openApiSpec: `${API_URL}/swagger.json`,
   login: {
-    url: `${API_URL}/god-api/admin_login`
+    url: `${API_URL}/admin_login`
   }
 };

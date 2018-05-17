@@ -17,9 +17,12 @@
     ],
     "baseUrl": "./src",
     "paths": {
-      "@env/*": ["environments/*"],  
+      "@env/*": ["environments/*"],
+      "@app/*": ["app/*"],
+      "@shared/*": ["app/shared/*"],
+      "@api/*": ["app/shared/models/api/*"],
+      "@crud/*": ["app/layout/entity/crud/*"],
       "@login/*": ["app/login/*"],
-      "@shared/*": ["app/shared/*"]
     }
   }
 }

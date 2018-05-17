@@ -9,14 +9,14 @@
                 <div class="form-content">
                     {{ credentials | json }}
                     <div class="form-group">
-                        <input 
+                        <input
                             name="username"
-                            type="text" 
-                            formControlName="username" 
-                            class="form-control input-underline input-lg"  
+                            type="text"
+                            formControlName="username"
+                            class="form-control input-underline input-lg"
                             placeholder="Username">
-                        <div 
-                            class="alert" 
+                        <div
+                            class="alert"
                             *ngIf="!form.controls['username'].valid && form.controls['username'].touched"
                         >
                             Username is required
@@ -24,14 +24,14 @@
                     </div>
 
                     <div class="form-group">
-                        <input 
-                            type="password" 
+                        <input
+                            type="password"
                             name="password"
-                            formControlName="password" 
-                            class="form-control input-underline input-lg" 
+                            formControlName="password"
+                            class="form-control input-underline input-lg"
                             placeholder="Password">
-                        <div 
-                            class="alert" 
+                        <div
+                            class="alert"
                             *ngIf="!form.controls['password'].valid && form.controls['password'].touched"
                         >
                             Password is required
@@ -39,11 +39,11 @@
 
                     </div>
                 </div>
-                <input 
+                <input
                     class=""
-                    type="submit" 
-                    class="btn rounded-btn button expanded" 
-                    value="Log in" 
+                    type="submit"
+                    class="btn rounded-btn button expanded"
+                    value="Log in"
                     [disabled]="!form.valid">
                     <!-- <a class="btn rounded-btn" [routerLink]="['/dashboard']" (click)="onLoggedin()"> Log in </a> -->
             </form>
