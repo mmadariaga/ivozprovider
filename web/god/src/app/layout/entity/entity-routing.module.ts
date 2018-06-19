@@ -14,12 +14,7 @@ const routes: Routes = [
     {
         path: ':entity/edit/:id',
         component: EditComponent
-    }/*,
-    {
-        path: ':entity/delete',
-        component: DeleteComponent
     }
-    */
 ];
 
 @NgModule({

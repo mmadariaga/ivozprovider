@@ -18,27 +18,48 @@ import Collection from '@crud/models/Collection';
                         {{ entityName }}
                     </div>
                     <div *ngIf="collection$ | async as collection">
+                        Total Items: {{ collection.totalItems }}
+
                         <table
                             class="card-body table table-hover">
                             <thead>
                             <tr>
                                 <th>#</th>
                                 <th *ngFor="let property of collection.properties">{{ property.name }} </th>
+                                <th>Options</th>
                             </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let item of collection.items">
                                     <td>
-                                        <a [routerLink]="[editBaseLink + item.id]" >{{ item.id }}</a>
+                                        <a [routerLink]="[editBaseLink + item.id]">{{ item.id }}</a>
                                     </td>
                                     <td *ngFor="let property of collection.properties">
                                         {{ item[property.name] }}
+                                    </td>
+                                    <td>
+                                        <button
+                                            class="btn btn-secondary"
+                                            [routerLink]="[editBaseLink + item.id]"
+                                            >[X] Edit
+                                        </button>
+                                        &nbsp;
+                                        <button
+                                            class="btn btn-secondary"
+                                            (click)="delete(item)"
+                                            >[-] Delete
+                                        </button>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
 
-                        Total Items: {{ collection.totalItems }}
+                        <button
+                            class="btn btn-secondary"
+                            [routerLink]="[newBaseLink]"
+                            > [+] Add
+                        </button>
+
                     </div>
                 </div>
             </div>
@@ -49,6 +70,7 @@ import Collection from '@crud/models/Collection';
 export class ListComponent implements OnInit {
 
     entityName: string = '';
+    newBaseLink: string;
     editBaseLink: string;
     collection$: Observable<Collection>;
 
@@ -65,8 +87,18 @@ export class ListComponent implements OnInit {
         });
     }
 
+    public delete(item) {
+
+        this.apiClientService
+            .remove(this.entityName, item.id).subscribe(
+                (success) => { console.log('success')},
+                (error) => { console.log('error')},
+            );
+    }
+
     private init() {
         this.entityName = this.route.snapshot.paramMap.get('entity').replace('-', '_');
+        this.newBaseLink = this.router.url + '/new/';
         this.editBaseLink = this.router.url + '/edit/';
 
         this.collection$ =  this.apiClientService.getCollection(

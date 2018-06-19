@@ -9,14 +9,12 @@ import { environment } from '@env/environment';
 import Item from '@app/layout/entity/crud/models/Item';
 
 import ApiSpecInterface from '@crud/interfaces/ApiSpecInterface';
-
 import * as pluralize from 'pluralize';
 
 @Injectable()
 export default class ApiClientService {
 
     private apiSpec$: Observable<Object>;
-
     private parsedSpecs: Object;
 
     constructor(private httpClient: HttpClient) {
@@ -40,21 +38,20 @@ export default class ApiClientService {
 
     public getCollection(
         endpoint: string,
-        order: any = {},
         page?: number,
+        order: any = {},
         itemsPerPage?: number,
         params: any = {}
     ): Observable<Collection> {
 
-        this.stringifyObjectValues(order);
-        this.stringifyObjectValues(params);
-
-        const queryStringParams = {
-            ...params,
-            _order: {
-                ...order
-            }
-        };
+        const queryStringParams = this.prepareQueryStringParams(
+            endpoint,
+            page,
+            order,
+            itemsPerPage,
+            params
+        );
+        console.log('> queryStringParams', queryStringParams);
 
         return combineLatest(
             this.apiSpec$,
@@ -80,6 +77,17 @@ export default class ApiClientService {
             );
     }
 
+    public remove(
+        endpoint: string,
+        id: number
+    ): Observable<Object> {
+        return this.httpClient
+            .delete(`${environment.baseUrl}/${endpoint}/${id}`)
+            .pipe(
+                catchError(() => throwError(new Error('Request error')))
+            );
+    }
+
     public getEntityBasePath(entityNameRoot: string): string {
 
         const pluralized = pluralize(entityNameRoot);
@@ -93,6 +101,39 @@ export default class ApiClientService {
     ///////////////////////////////////////////////////////////////
     // Private
     ///////////////////////////////////////////////////////////////
+
+    private prepareQueryStringParams(
+        endpoint: string,
+        page?: number,
+        order: any = {},
+        itemsPerPage?: number,
+        params: any = {}
+    ): string {
+
+        params = this.stringifyObjectValues(params);
+        const queryStringParams = {
+            ...params
+        };
+
+        if (Object.keys(order).length) {
+            queryStringParams._order =  this.stringifyObjectValues(order);
+        }
+
+        if (page) {
+            if (page < 0) {
+                queryStringParams._pagination = false;
+            } else {
+                queryStringParams._page = page;
+            }
+        }
+
+        if (itemsPerPage) {
+            queryStringParams._itemsPerPage = itemsPerPage;
+        }
+
+        return queryStringParams;
+    }
+
     private stringifyObjectValues(object : Object) {
         let response = {};
         Object.keys(object).map(
@@ -125,7 +166,7 @@ export default class ApiClientService {
     private getRequest(endpoint, queryStringParams?: Object): Observable<any> {
 
         return this.httpClient
-            .get(endpoint, queryStringParams)
+            .get(endpoint, {params: queryStringParams})
             .pipe(
                 catchError(() => throwError(new Error('Request error')))
             );

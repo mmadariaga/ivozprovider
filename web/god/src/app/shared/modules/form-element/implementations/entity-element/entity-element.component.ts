@@ -53,6 +53,6 @@ export class EntityElementComponent implements OnInit {
          * @todo not paginated results required
          */
         this.collection$ = this.apiClientService
-            .getCollection(endpoint);
+            .getCollection(endpoint, -1);
     }
 }
