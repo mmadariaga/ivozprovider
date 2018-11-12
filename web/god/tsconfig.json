@@ -19,10 +19,12 @@
     "paths": {
       "@env/*": ["environments/*"],
       "@app/*": ["app/*"],
+      "@layouts/*": ["app/layouts/*"],
+        "@login/*": ["app/layouts/login/*"],
+      "@pages/*": ["app/pages/*"],
       "@shared/*": ["app/shared/*"],
-      "@api/*": ["app/shared/models/api/*"],
-      "@crud/*": ["app/layout/entity/crud/*"],
-      "@login/*": ["app/login/*"],
+        "@api/*": ["app/shared/models/api/*"],
+        "@crud/*": ["app/shared/modules/entity/crud/*"]
     }
   }
 }

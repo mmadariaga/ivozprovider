@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
+import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -46,7 +46,8 @@ export const createTranslateLoader = (http: HttpClient) => {
         }),
         AppRoutingModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        Ng2GoogleChartsModule
     ],
     declarations: [AppComponent],
     providers: [AuthGuard, AuthService, SessionRepository, FormFactoryService, HttpInterceptorProviders],

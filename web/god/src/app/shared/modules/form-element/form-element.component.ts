@@ -14,7 +14,7 @@ import { FormGroup } from '@angular/forms';
 import Property from '@app/shared/models/Property';
 
 import * as Implementations from './implementations/index';
-import Item from '@app/layout/entity/crud/models/Item';
+import Item from '@shared/modules/entity//crud/models/Item';
 
 @Component({
     selector: 'app-form-element',

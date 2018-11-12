@@ -27,7 +27,7 @@ export class AuthService {
         return (this.sessionRepository.get() !== undefined);
     }
 
-    public getToken(): String {
+    public getToken(): string {
         if (!this.isLoggedIn()) {
             return '';
         }

@@ -6,10 +6,15 @@
 const API_URL = 'https://10.10.3.21/api/platform';
 
 export const environment = {
-  production: false,
-  baseUrl: API_URL,
-  openApiSpec: `${API_URL}/swagger.json`,
-  login: {
-    url: `${API_URL}/admin_login`
-  }
+    production: false,
+    baseUrl: API_URL,
+    openApiSpec: `${API_URL}/swagger.json`,
+    login: {
+        url: `${API_URL}/admin_login`
+    },
+    ws: {
+        protocol: 'wss://',
+        port: '8080',
+        endpoint: 'realtime'
+    }
 };

@@ -1,6 +1,8 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './http-interceptors/token-interceptor';
 
+export * from './interfaces';
+export * from './models';
 export * from './modules';
 export * from './pipes/shared-pipes.module';
 export * from './guard';

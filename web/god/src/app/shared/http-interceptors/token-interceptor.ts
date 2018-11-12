@@ -7,7 +7,6 @@ import { tap, catchError } from 'rxjs/operators';
 
 import { environment } from '@env/environment';
 import { AuthService } from '@shared/services/auth.service'
-import { HttpResponse } from 'selenium-webdriver/http';
 import { Router } from '@angular/router';
 
 @Injectable()
@@ -35,7 +34,7 @@ export class TokenInterceptor implements HttpInterceptor {
   }
 
   ///////////////////////////////////////////////////////////////
-  // Private 
+  // Private
   ///////////////////////////////////////////////////////////////
   private addAuthorizationHeader(req: HttpRequest<any>) {
     if (!this.authService.isLoggedIn()) {

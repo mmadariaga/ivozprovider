@@ -4,7 +4,6 @@ import {
     Input
 } from '@angular/core';
 
-import { RouterModule } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import Property from '@app/shared/models/Property';
 

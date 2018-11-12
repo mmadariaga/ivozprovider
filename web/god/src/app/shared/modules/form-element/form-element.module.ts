@@ -10,6 +10,8 @@ import {
     EntityElementComponent
 } from './implementations/index';
 
+import { ApiClientService } from "@crud/services/ApiClient.service";
+
 @NgModule({
     imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
     declarations: [
@@ -18,6 +20,7 @@ import {
         BooleanElementComponent,
         EntityElementComponent
     ],
-    exports: [FormElementComponent]
+    exports: [FormElementComponent],
+    providers: [],
 })
 export class FormElementModule {}

@@ -4,10 +4,9 @@ import {
     Input
 } from '@angular/core';
 
-import { RouterModule } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import Property from '@app/shared/models/Property';
-import ApiClientService from '@app/layout/entity/crud/services/ApiClient.service';
+import { ApiClientService } from '@shared/modules/entity/crud/services/ApiClient.service';
 import { Observable } from 'rxjs';
 
 @Component({

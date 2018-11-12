@@ -1,0 +1,85 @@
+<div class="gchart" [@routerTransition]>
+    <!--<app-page-header [heading]="'Realtime Stats'" [icon]="'fa-bar-chart-o'"></app-page-header>-->
+    <div class="row">
+        <div class="col col-sm-6">
+            <div class="card mb-3">
+                <div class="card-header">
+                    Geo Chart
+                </div>
+                <div class="card-body mapContainer">
+                    <google-chart [data]="perCountryCalls$|async"></google-chart>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <div class="card-header">
+                    Stats
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col col-sm-12">
+                            <google-chart [data]="onGoingCallStats$ | async"></google-chart>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-sm-4 no-padding">
+                            <google-chart [data]="callsPerCompany$ | async"></google-chart>
+                        </div>
+                        <div class="col col-sm-4 no-padding">
+                            <google-chart [data]="callsPerBrand$ | async"></google-chart>
+                        </div>
+                        <div class="col col-sm-4 no-padding">
+                            <google-chart [data]="callsPerCarrier$ | async"></google-chart>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col col-sm-6">
+            <div class="card mb-6 tableContainer">
+                <div class="card-header">
+                    Ongoing Calls
+                </div>
+                <div class="card-body"
+                     *ngFor="let calls of (onGoingCallsPerCompany$ | async | keyvalue:sortByIndex);"
+                >
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th colspan="5">{{ calls.key }}</th>
+                            </tr>
+                        </thead>
+                        <thead class="table-secondary">
+                            <tr>
+                                <th>Caller</th>
+                                <th>Callee</th>
+                                <th>Duration</th>
+                                <th>Direction</th>
+                                <th>Carrier</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let call of calls.value">
+                                <td>{{ call.caller }}</td>
+                                <td>{{ call.callee }}</td>
+                                <td>{{ currentTime - call.time}} sec</td>
+                                <td>{{ call.direction }}</td>
+                                <td>{{ call.carrierId }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+    </div>
+
+    <div class="row">
+        <div class="col col-sm-12">
+
+        </div>
+    </div>
+
+</div>
